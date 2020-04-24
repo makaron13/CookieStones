@@ -136,6 +136,12 @@
                 android:layout_gravity="center"
                 android:text="Обновить" />
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/stone" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
