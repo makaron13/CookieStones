@@ -6,14 +6,17 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 //
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+
+
     private TextView tvMovies;
-    private Button [] buttonsC  = new Button[9];
-    private Button btnRefresh;
+    private ImageView [] buttonsC  = new ImageView[9];
+    private ImageView btnRefresh;
     private int count = 0; //Считает количество ходов.
     private byte winCount = 0; //Если эта переменная будет == 9, то игрок победил.
     private int [] btnColor  = {0, 0, 0, 0, 0, 0, 0, 0, 0 }; //Этот массив будет определять цвет и надпись на кнопке.
@@ -27,15 +30,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Находим все элементы на экране Activity
         tvMovies = findViewById(R.id.tvMovies);
 
-        buttonsC[0] = findViewById(R.id.btnTL0);
-        buttonsC[1] = findViewById(R.id.btnTC1);
-        buttonsC[2] = findViewById(R.id.btnTR2);
-        buttonsC[3] = findViewById(R.id.btnCL3);
-        buttonsC[4] = findViewById(R.id.btnCC4);
-        buttonsC[5] = findViewById(R.id.btnCR5);
-        buttonsC[6] = findViewById(R.id.btnBL6);
-        buttonsC[7] = findViewById(R.id.btnBC7);
-        buttonsC[8] = findViewById(R.id.btnBR8);
+
+        buttonsC[0] = findViewById(R.id.imTL0);
+        buttonsC[1] = findViewById(R.id.imTC1);
+        buttonsC[2] = findViewById(R.id.imTR2);
+        buttonsC[3] = findViewById(R.id.imCL3);
+        buttonsC[4] = findViewById(R.id.imCC4);
+        buttonsC[5] = findViewById(R.id.imCR5);
+        buttonsC[6] = findViewById(R.id.imBL6);
+        buttonsC[7] = findViewById(R.id.imBC7);
+        buttonsC[8] = findViewById(R.id.imBR8);
 
         btnRefresh = findViewById(R.id.btnRefresh);
 
@@ -66,13 +70,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             btnColor[i] = (int) (Math.random()*2);
             //Если 0, то кнопка становится красной
             if (btnColor[i] == 0) {
-                buttonsC[i].setBackgroundColor(Color.RED);
-                buttonsC[i].setText("Stone");
+                buttonsC[i].setImageResource(R.drawable.stone);
             }
             //если 1, то кнопка становится зеленой.
             else{
-                buttonsC[i].setBackgroundColor(Color.GREEN);
-                buttonsC[i].setText("Cookie");
+                buttonsC[i].setImageResource(R.drawable.cookie);
                 winCount++; //Считает количество зеленых кнопок, чтобы случайно не получилась выиграшная комбинация.
                 //Если зеленых кнопок 9 (что означает победу), то счетчик победы обнуляется и переменные
                 //в массиве btnColor снова задаются случайным образом при помощи рекурсии.
@@ -98,53 +100,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //а так же инкрементация переменных соседних кнопок.
         //Соседними кнопками считаются кнопки, касающиеся друг друга с какой-либо стороны.
         switch (v.getId()){
-            case R.id.btnTL0:
+            case R.id.imTL0:
                 btnColor[0]++;
                 btnColor[1]++;
                 btnColor[3]++;
                 break;
-            case R.id.btnTC1:
+            case R.id.imTC1:
                 btnColor[0]++;
                 btnColor[1]++;
                 btnColor[2]++;
                 btnColor[4]++;
                 break;
-            case R.id.btnTR2:
+            case R.id.imTR2:
                 btnColor[1]++;
                 btnColor[2]++;
                 btnColor[5]++;
                 break;
-            case R.id.btnCL3:
+            case R.id.imCL3:
                 btnColor[0]++;
                 btnColor[3]++;
                 btnColor[4]++;
                 btnColor[6]++;
                 break;
-            case R.id.btnCC4:
+            case R.id.imCC4:
                 btnColor[1]++;
                 btnColor[3]++;
                 btnColor[4]++;
                 btnColor[5]++;
                 btnColor[7]++;
                 break;
-            case R.id.btnCR5:
+            case R.id.imCR5:
                 btnColor[2]++;
                 btnColor[4]++;
                 btnColor[5]++;
                 btnColor[8]++;
                 break;
-            case R.id.btnBL6:
+            case R.id.imBL6:
                 btnColor[3]++;
                 btnColor[6]++;
                 btnColor[7]++;
                 break;
-            case R.id.btnBC7:
+            case R.id.imBC7:
                 btnColor[4]++;
                 btnColor[6]++;
                 btnColor[7]++;
                 btnColor[8]++;
                 break;
-            case R.id.btnBR8:
+            case R.id.imBR8:
                 btnColor[5]++;
                 btnColor[7]++;
                 btnColor[8]++;
@@ -159,11 +161,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Если число делится на 2, то кнопка становится красной, если нет - то зеленой.
         for (byte i = 0; i < 9; i++) {
             if (btnColor[i]%2 == 0) {
-                buttonsC[i].setBackgroundColor(Color.RED);
-                buttonsC[i].setText("Stone");
+                buttonsC[i].setImageResource(R.drawable.stone);
             } else {
-                buttonsC[i].setBackgroundColor(Color.GREEN);
-                buttonsC[i].setText("Cookie");
+                buttonsC[i].setImageResource(R.drawable.cookie);
                 //Происходит инкрементация счетчика победы.
                 //Подсчитывается каждая зеленая кнопка.
                 winCount++;
