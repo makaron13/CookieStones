@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="bottom|center"
-            android:text="Всего ходов: 0" />
+            android:text="Всего ходов: 0 " />
     </LinearLayout>
 
     <LinearLayout
